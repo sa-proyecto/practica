@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "practica-lab-sa"
+    }
+  },
+  "defaultProject": "practica-lab-sa",
+  "cli": {
+    "analytics": false
+  }
 }
