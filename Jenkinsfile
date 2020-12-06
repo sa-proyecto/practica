@@ -4,6 +4,10 @@ pipeline {
 
     agent any
 
+    environment {
+        CHROME_BIN = 'google-chrome'
+    }
+
     stages {
         stage('Install') {
             steps {
