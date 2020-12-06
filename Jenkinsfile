@@ -1,20 +1,27 @@
-node {
-    stage('Build') {
-        steps {
-            echo 'Building...'
-            sh 'npm install'
+#!/usr/bin/env groovy
+
+pipeline {
+
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                sh 'npm install'
+            }
         }
-    }
-    stage('Test') {
-        steps {
-            echo 'Testing...'
-            sh 'npm run test'
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                sh 'npm run test'
+            }
         }
-    }
-    stage('Deploy') {
-        steps {
-            echo 'Starting...'
-            sh 'npm run start'
+        stage('Deploy') {
+            steps {
+                echo 'Starting...'
+                sh 'npm run start'
+            }
         }
     }
 }
