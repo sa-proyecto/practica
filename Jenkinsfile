@@ -5,16 +5,16 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Install') {
             steps {
-                echo 'Building...'
+                echo 'Installing...'
                 sh 'npm install'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
-                sh 'npm run test'
+                sh 'npm run test-headless'
             }
         }
         stage('Deploy') {
