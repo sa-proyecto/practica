@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Starting...'
-                sh 'npm run start'
+                sh 'pm2 restart practica1'
             }
         }
     }
