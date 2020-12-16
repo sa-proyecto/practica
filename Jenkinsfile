@@ -21,10 +21,22 @@ pipeline {
                 sh 'npm run test-headless'
             }
         }
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                sh 'ng build'
+            }
+        }
+        stage('Puppet') {
+            steps {
+                echo 'Preparing puppet agent...'
+                sh 'ssh medinillag@agent.medinillag.com < /var/lib/jenkins/workspace/pipeline/puppet-agent.sh'
+            }
+        }
         stage('Deploy') {
             steps {
-                echo 'Starting...'
-                sh 'pm2 restart practica1'
+                echo 'Deploying...'
+                sh 'scp -r /var/lib/jenkins/workspace/pipeline/dist medinillag@agent.medinillag.com:/var/www/html'
             }
         }
     }
