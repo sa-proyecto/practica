@@ -24,7 +24,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'ng build'
+                sh 'npm run build'
             }
         }
         stage('Puppet') {

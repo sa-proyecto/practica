@@ -37,6 +37,8 @@ import { MessagesComponent } from './messages/messages.component';
     )
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+  ]
 })
 export class AppModule { }
