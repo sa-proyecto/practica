@@ -30,13 +30,13 @@ pipeline {
         stage('Puppet') {
             steps {
                 echo 'Preparing puppet agent...'
-                sh 'ssh medinillag@agent.medinillag.com < /var/lib/jenkins/workspace/pipeline/puppet-agent.sh'
+                sh 'ssh medinillag@35.239.252.174 < /var/lib/jenkins/workspace/pipeline/puppet-agent.sh'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
-                sh 'scp -r /var/lib/jenkins/workspace/pipeline/dist medinillag@agent.medinillag.com:/var/www/html'
+                sh 'scp -r /var/lib/jenkins/workspace/pipeline/dist medinillag@35.239.252.174:/var/www/html'
             }
         }
     }
