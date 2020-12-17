@@ -36,7 +36,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
-                sh 'scp -r /var/lib/jenkins/workspace/pipeline/dist medinillag@agent.medinillag.com:/var/www/html'
+                sh 'chmod +x /var/lib/jenkins/workspace/pipeline/puppet-transfer.sh'
+                sh '/var/lib/jenkins/workspace/pipeline/puppet-transfer.sh'
             }
         }
     }
