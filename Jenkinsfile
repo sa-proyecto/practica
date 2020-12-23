@@ -27,17 +27,12 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        stage('Puppet') {
+        stage('Chef') {
             steps {
-                echo 'Preparing puppet agent...'
-                sh 'ssh medinillag@agent.medinillag.com < /var/lib/jenkins/workspace/pipeline/puppet-agent.sh'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
-                sh 'chmod +x /var/lib/jenkins/workspace/pipeline/puppet-transfer.sh'
-                sh '/var/lib/jenkins/workspace/pipeline/puppet-transfer.sh'
+                echo 'Preparing chef...'
+                sh 'scp -r /var/lib/jenkins/workspace/pipeline/dist/practica-lab-sa root@workstation.medinillag.com:~/chef-repo/cookbooks/first_cookbook/files/default/'
+                sh 'chmod +x /var/lib/jenkins/workspace/pipeline/chef-agent.sh'
+                sh 'ssh root@workstation.medinillag.com < /var/lib/jenkins/workspace/pipeline/chef-agent.sh'
             }
         }
     }
