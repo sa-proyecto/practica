@@ -27,12 +27,9 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        stage('Chef') {
+        stage('Deploy') {
             steps {
-                echo 'Preparing chef...'
-                sh 'scp -r /var/lib/jenkins/workspace/pipeline/dist/practica-lab-sa root@workstation.medinillag.com:~/chef-repo/cookbooks/first_cookbook/files/default/'
-                sh 'chmod +x /var/lib/jenkins/workspace/pipeline/chef-agent.sh'
-                sh 'ssh root@workstation.medinillag.com < /var/lib/jenkins/workspace/pipeline/chef-agent.sh'
+                ansiblePlaybook installation: 'ansible2', inventory: 'dev.inv', playbook: 'ansible_config.yml'
             }
         }
     }
