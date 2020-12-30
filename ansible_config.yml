@@ -18,5 +18,5 @@
         enabled: True
     - name: deploy static website
       copy:
-        src: dist/
+        src: dist/practica-lab-sa/
         dest: /var/www/html
